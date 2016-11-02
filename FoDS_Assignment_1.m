@@ -21,10 +21,15 @@ training = [4, 4, 4;
             2.8, 4.6, 3.1]
   group =[1;1;1;1;-1;-1;-1;-1;1;1;1;-1;-1;-1;-1;-1;-1;-1;1;-1]
   
-  sample=[4, 3, 3; 4,1,1;2, 4,5;2,6,1;6, 0,2]
+  sample=[4, 3, 3; 4,-1,1;-2,4,5;-2,-6,-1;6, 0,2]
   
-  k = knnclassify(sample,training, group,3,'euclidean')
+  k = knnclassify(sample,training, group,2,'euclidean')
   
   
  %exercise 3
+  X=[4, 2, 1;-1, 2, -4;8, -2, -3;1, -1, 1;
+      2, -2, 5;-6, 2, 7]
+  %X=x'  
+  T=[-1,1,1,-1,-1,-1]
+
  [w]=perceptionLearn(X,T,1,30);

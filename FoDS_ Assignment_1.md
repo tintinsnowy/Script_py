@@ -8,8 +8,8 @@
 
 |        | euclidean | manhattan |
 |--------| --------- | ------------- |
-| K=2  |(1 -1 -1 -1 -1)|(1 -1  1  -1    -1）|
-| K=3  |( 1 -1 1 -1 1) | (1  -1   1    -1 -1)| 
+| K=2  |[1;-1;-1;-1;-1]| [1;-1;-1;-1;-1]|
+| K=3  |[1;-1;-1;1;1] | [1;1;1;1;-1]| 
 
 
 ## Exercise 2
@@ -21,14 +21,20 @@
 ``` matlab
 function [w]=perceptionLearn(x,y,learningRate,maxEpoch)  
 % Perception Learn Algorithm  
-% 
-[m,n]=size(x);  
-x=[ones(m,1) x];  
-w=zeros(1,n+1);  
+% x,y ????????y??{-1,+1}  
+  
+[m,n]=size(x);
+
+x=[x ones(m,1)];  
+ab = max(max(abs(x)))
+
+x = x/ab
+
+w=zeros(1,n+1);
 finish=true;  
 for epoch=1:maxEpoch  
     for samlendex=1:m  
-        if sign(x(samlendex,:)*w')~=y(samlendex)  
+        if sign(x(samlendex,:)*w')~=y(samlendex)
             finish=false;  
             w=w+learningRate*y(samlendex)*x(samlendex,:)
         end  
@@ -45,16 +51,21 @@ end
 
 ``` matlab
 
-w1 =
-    -1    -4    -2    -1
-w2 =
 
-     0     4    -4    -4
+w1 =
+   -0.5000   -0.2500   -0.1250   -0.1250
+
+
+w2 =
+    0.5000   -0.5000   -0.5000         0
+
+
 w3 =
-    -1     3    -3    -5
+    0.3750   -0.3750   -0.6250   -0.1250
+
 
 w4 =
-    -2    -1    -5    -6
+   -0.1250   -0.6250   -0.7500   -0.2500
 ``` 
 
 ## Exercise 4
