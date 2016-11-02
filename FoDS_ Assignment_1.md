@@ -14,7 +14,7 @@
 
 ## Exercise 2
 
-![](16.11.01_FoDS_Assignment_1.png)
+![](FoDS_Assignment_1.png)
 
 ## Exercise 3
 
