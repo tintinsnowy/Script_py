@@ -32,4 +32,4 @@ training = [4, 4, 4;
   %X=x'  
   T=[-1,1,1,-1,-1,-1]
 
- [w]=perceptionLearn(X,T,1,30);
+ [w]=perceptionLearn(X,T,1,10);
