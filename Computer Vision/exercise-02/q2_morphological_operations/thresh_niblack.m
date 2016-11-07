@@ -5,14 +5,11 @@ res=img;
  for i=1:row
      for j=1:col
          [m,v]= get_window_mean_var(img,i,j,r);
-         T= m+k*v;
-         if(res(i,j)>=T)
-             res(i,j)=1;
-         else 
-             res(i,j)=0;
-         end
+         T = m+k*v;
+         res(max(1,i-r):min(i+r,row), max(1,j-r):min(j+r,col))= ...
+         img(max(1,i-r):min(i+r,row), max(1,j-r):min(j+r,col))>=T;
      end
  end
- figure;
- imshow(res,[]);
+ res =logical(res);
+ imshow(res,[0,1]);
 end

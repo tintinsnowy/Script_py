@@ -17,8 +17,8 @@ p = counts / sum(counts);
 for t = 1 : nbins
    q_L = sum(p(1 : t))/t;
    q_H = sum(p(t + 1 : end));
-   miu_L =sum(p(1 : t) .* (1 : t)') / q_L; %q_L/t;
-   miu_H = sum(p(t + 1 : end) .* (t + 1 : nbins)')/q_H; %q_H/(nbins-t+1);
+   miu_L = q_L/t;%sum(p(1 : t) .* (1 : t)') / q_L; %q_L/t;
+   miu_H = q_H/(nbins-t+1);%sum(p(t + 1 : end) .* (t + 1 : nbins)')/q_H; %
    sigma_b(t) = q_L * q_H * (miu_L - miu_H)^2;
 end
 [~,t] = max(sigma_b(:))
