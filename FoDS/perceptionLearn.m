@@ -24,8 +24,8 @@ num = 0;
 for epoch=1:maxEpoch  
     for samlendex=1:m 
         num = num+1;
-        disp(num)
-        %disp(w)
+        %disp(num);
+        disp(w)
         if sign(x(samlendex,:)*w')~=y(samlendex)
             finish=false;  
             w=w+learningRate*y(samlendex)*x(samlendex,:);

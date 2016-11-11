@@ -10,32 +10,16 @@
 |--------| --------- | ------------- |
 | K=2  |[1;-1;-1;-1;-1]| [1;-1;-1;-1;-1]|
 | K=3  |[1;-1;-1;1;1] | [1;1;1;1;-1]| 
-
+From the table we can clearly see the comparison. When K=2, both methods (Euclidean or Manhattan) work well. 
+But when K=3, the classification performs badly. 
+Maybe one of the reason would be that there are only 2 labels (1,-1). 
+The second reason would be voting. For example if two of three are the same label, 
+even though they are farther from the candidate than the rest one, they have majority voting.
 
 ## Exercise 2
-```
 
+![](FoDS_Assignment_1.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```
 ## Exercise 3
 
 ``` matlab
@@ -111,9 +95,10 @@ w8=
 ``` 
 
 ## Exercise 4
- 1. 1
+ 1. 1 
  2. W1 =(1,....1)
     
     ...
 
     Wn =(1/sqrt(n),....1/sqrt(n))
+3. no 
