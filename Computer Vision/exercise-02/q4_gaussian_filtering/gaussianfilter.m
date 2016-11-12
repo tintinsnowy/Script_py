@@ -22,5 +22,5 @@ halfwid = 3*sigma;
         outimg(i,j)= sum(sum(inimg(xl:xh,yl:yh).*gau(xl2:xh2,yl2:yh2)));
      end
  end
- [outimg,~]=mapminmax(outimg,0,1)
+ [outimg,~]=mapminmax(outimg,0,1);
 end
