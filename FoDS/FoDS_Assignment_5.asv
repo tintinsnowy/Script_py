@@ -1,9 +1,0 @@
-cub = -1/2+rand([30,100])
-dis =zeros(900,900);
-angle = zeros(900,900)
-
-for i=1:30
-    for j =1:30
-      cub
-    end
-end
