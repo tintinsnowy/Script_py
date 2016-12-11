@@ -3,9 +3,9 @@ function houghSpace=houghtransform(imgEdge,nBinsRho,nBinsTheta)
 [row, col] = size(imgEdge);
 D = norm(size(imgEdge)); % Length of image diagonal
 houghSpace=zeros(nBinsRho,nBinsTheta);
-for i=1:col
-    for j=1:row
-       if imgEdge(j,i)==1
+for i=1:row
+    for j=1:col
+       if imgEdge(i,j)==1
          for theta = 1:nBinsTheta
              t = -pi/2 + pi*theta/nBinsTheta;
              d = i*cos(t)+j*sin(t);

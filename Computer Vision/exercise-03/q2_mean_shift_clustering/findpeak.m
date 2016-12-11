@@ -1,22 +1,23 @@
 function peaka = findpeak(data, idx, r) 
-    [n,y] = size(data);
-    shift =1;
+% created by sherry 
+% idx is the column index of the data(how many columns are there) 
+% data is an n * p matrix containing p data points
+% and r is the search window radius.
+    [n,p] = size(data);
+    shift =Inf;
 	% thresh is 0.1
     dis=zeros(1,idx);
-    p= data(:,int8(idx/2));
+    current_point = data(:,round(idx/2));% current piont
+    r2 = r^2;
+    
     while shift>0.1
-        for i=1:idx
-           dis(i)=norm(data(:,i)-p);
-        end
-        %dis = sum((data-repmat(p,n,1)).^2);
-        v_y = find(dis<=r);
-        if(isempty(v_y)) peaka = random*ones(n,1);
-        elseif(sum(size(v_y))>(n+1))
-          peaka=mean(data(:,v_y))
-        else
-          peaka = data(:,v_y);
-        end
-         shift = norm(peaka-p);
-         p = peaka;
+        % Find points inside the spherical window
+		indices = sum( (data - repmat(current_point, 1, p)).^2, 1) < r2;	 		
+		% Shift the current point to their center
+		A = data(:, indices);  % smart use logical marix!!!
+		old = current_point;
+		current_point = mean(A, 2);
+		shift = sqrt(sum((old - current_point).^2));
     end
+    	peaka = current_point;
 end
