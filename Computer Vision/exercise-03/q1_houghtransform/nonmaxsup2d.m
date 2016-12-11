@@ -2,7 +2,7 @@ function imgResult = nonmaxsup2d(imgHough)
     [row,col] = size(imgHough); 
     imgResult = ones(row,col);
     tmp = ones(row,col);
-    for i=2:row-1
+    for i=2:row-1  %faster don't mind the bundary
         for j = 2:col-1
             a = imgHough(i-1,j-1);b = imgHough(i-1,j+1);
             c = imgHough(i+1,j-1);d = imgHough(i+1,j+1);

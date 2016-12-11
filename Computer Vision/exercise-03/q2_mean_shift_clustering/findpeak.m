@@ -1,22 +1,22 @@
 function peaka = findpeak(data, idx, r) 
-    n = size(data(:,1));
-    shift =0.1;
+    [n,y] = size(data);
+    shift =1;
 	% thresh is 0.1
-    dis=zeros(n);
-    p= data(int8(n/2),:);
-    done =1;
-    while done
-        for i=1:n
-           dis(i)=norm(data(i,:)-p);
+    dis=zeros(1,idx);
+    p= data(:,int8(idx/2));
+    while shift>0.1
+        for i=1:idx
+           dis(i)=norm(data(:,i)-p);
         end
-        v_x = find(dis<=r);
-        if(sum(size(v_x))>(idx+1))
-          peaka=mean(data(v_x,:))
+        %dis = sum((data-repmat(p,n,1)).^2);
+        v_y = find(dis<=r);
+        if(isempty(v_y)) peaka = random*ones(n,1);
+        elseif(sum(size(v_y))>(n+1))
+          peaka=mean(data(:,v_y))
         else
-          peaka = data(v_x,:);
+          peaka = data(:,v_y);
         end
-        if norm(peaka-p)<=shift
-          done =0;
-        end
+         shift = norm(peaka-p);
+         p = peaka;
     end
 end
