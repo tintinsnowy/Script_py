@@ -1,6 +1,6 @@
 function plot_color_histogram(h_vec)
 
-	bins = nthroot(size(h_vec,2), 3);
+	bins = round(nthroot(size(h_vec,2), 3));
 	h = reshape(h_vec,[bins, bins, bins]);
 
 	axis([0, bins, 0, bins, 0, bins]);
