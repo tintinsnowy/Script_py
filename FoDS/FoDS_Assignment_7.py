@@ -1,36 +1,35 @@
 #---Sherry Yang      2016.12.20 -----------------
-#---home work for data processing----------------
-#---filein/ substring/regular expression/ math---
-
-
+#---home work for Flajolet-Martin----------------
 import re
 from math import sqrt,pow
 
-f =['data_310_10_xl.txt','data_310_10_jl.txt','data_310_10_s.txt']
-MT=0
-s = 0
-u = 0
-count = 0
-x = []
-for i in range(0,3):
- now = open(f[i], 'r')
- for line in now.readlines():
-    if line[0] !='B'and line[0] !='T':
-       w = float(re.sub(r';.*$',"",line))
-       MT += w
-       s = float(re.sub(r'.*;',"",line))
-       count +=1
-       u += s
-       x.append(s)
+#function part
+def zeros( w ):
+   tmp_sum=0;
+   for i in range(len(w)):
+      tmp_sum=tmp_sum*pow(2,4)+float(w[i]);
+   #hash function comes in
+   tmp_sum = tmp_sum%(pow(2,18));# as long as it's bigger than length
+   tmp_sum=bin(int(tmp_sum))[2:];
+   # start find the 0
+   re = 0;
+   long = len(tmp_sum);
+   for i in range(long-1,-1,-1):
+       if tmp_sum[i]=='0':
+           re = long-i+1;
+           break;
+   return re
 
-u = u/count
-print('average(MT):'+str(MT/count))
-print('COUNT:'+str(count))
-sigma = 0
-#sigma
-for i in range(0,count):
-   sigma += pow((x[i]-u),2)
-
-sigmax = sqrt((sigma/count))
-print('SigmaX:'+ str(sigmax))
-       
+#main part
+z=0
+file = open('ips.txt', 'r');
+count =1;
+for line in file.readlines():
+    w = re.findall(r'[0-9]*',line)
+    w = list(filter(None, w))
+    num = zeros(w);
+    if num>z:
+       z = num;
+res = pow(2,z+1/2);
+      
+    
