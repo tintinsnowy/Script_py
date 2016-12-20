@@ -4,4 +4,6 @@ function h=myhist(filename, bins)
     [row, col] = size(img);
     img = reshape(img,row*col,1);
     h = hist(img,bins);
+    %normalized
+    h = h/sum(h);
 end

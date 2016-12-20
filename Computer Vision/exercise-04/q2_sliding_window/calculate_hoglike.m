@@ -1,10 +1,12 @@
 function hog = calculate_hoglike(img, cellsize, n_bins, sigma, offset_lr, offset_tb, interpolation)
 
-    [mag,dir]=imgradient[img,sigma];
-    mag = mag[offset_lr,offset_tb];
-    dir = dir[offset_lr,offset_tb];
+    [mag,dir]=imgradient(img,sigma);
+    [row,col] = size(img);
+    %row and col <->td, lr
+    mag = mag(offset_lr:row-offset_lr,1:col-offset_tb);
+    dir = dir(offset_lr:row-offset_lr,1:col-offset_tb);
     [row,col] = size(mag);
-    hog = zeros[row,col,n_bins];
+    hog = zeros(row,col,n_bins);
     for i=1:row
         for j = 1:col
             [cells_x, cells_y, weights] = get_cell(i,j, cellsize, x, y);
