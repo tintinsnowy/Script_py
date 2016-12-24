@@ -7,7 +7,7 @@ function peaka = findpeak(data, idx, r)
     shift =Inf;
 	% thresh is 0.1
     dis=zeros(1,idx);
-    current_point = data(:,round(idx/2));% current piont
+    current_point = data(:,idx);% current piont
     r2 = r^2;
     
     while shift>0.1
