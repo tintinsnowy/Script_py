@@ -1,6 +1,3 @@
 function potentials = unary_potentials(probability, unary_weight)
-
-
-	% insert your code here
-
+          potentials = -1*unary_weight*log(probability);  
 end
