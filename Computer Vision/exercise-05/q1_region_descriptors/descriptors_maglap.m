@@ -10,7 +10,7 @@ function descriptor = descriptors_maglap(img, px, py, windowsize, sigma, bins)
 		miny = max(py(i) - rad, 1);
 		maxy = min(py(i) + rad, row);
         
-        imgWin = img(miny:maxy, minx:maxx, :);
+        imgWin = img(miny:maxy, minx:maxx);
 		hist = histmaglap(imgWin,sigma,bins);
 		descriptor(i, :) = hist';
 	end
