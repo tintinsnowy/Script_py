@@ -9,7 +9,7 @@ function foreground_map = foreground_pmap(img, fg_histogram, bg_histogram)
 			fg_score = fg_histogram(bins(1), bins(2), bins(3));
 			bg_score = bg_histogram(bins(1), bins(2), bins(3));
  		  	
-			foreground_map(y,x) = bg_score/(fg_score+bg_score);
+			foreground_map(y,x) = fg_score/(fg_score+bg_score);
 		end
 	end
 

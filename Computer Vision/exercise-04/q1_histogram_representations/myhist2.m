@@ -1,9 +1,9 @@
 function h = myhist2(filename, bins)
-    h = zeros(bins,bins,bins);
+    
     %read the image and convert it to double.
     img = double(imread(filename));
     img = floor(img*(bins)/256)+1;
-    
+    h = zeros(bins,bins,bins);
     [row, col, wid] = size(img);
     for i=1:row
         for j = 1:col

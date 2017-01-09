@@ -38,34 +38,37 @@ while max(max(abs(pre-lamda)))>1.0e-5
     norm=max(abs(y));
     l = y.*x;  % Rayleigh
     m = x.*x;
-    pre = lamda
-    lamda = l/m
+    pre = lamda;
+    lamda = l/m;
     x = y / norm;
 end
 small = min(lamda)
 lamda = lamda.^(-1);
 
-%-----------4
+%-----------4--------
 M4=[4 5;6 5];
 M5=[-4 10;7 5];
-[row,col] = size(M4);
+[row,col] = size(M5);
 y=zeros(row,1);
 x=[1;1];
 lamda =x;
 pre =[Inf,Inf];
-count=1;
-while max(max(abs(pre-lamda)))>=1.0e-3
-    y=M4*x;
-    norm=max(abs(y));
-        y = y / norm;%new
-    l = y.*x;  % Rayleigh
-    m = x.*x;
-    pre = lamda;
-    lamda = l/m
+count=0;
+offset =1;
+while sum(pre==y)~=2 
+    pre =y
+    y=M5*x;%M5
+    %l = y.*x;  % Rayleigh
+    %m = x.*x;
+    %lamda = l/m
     count = count+1
+    norm=max(y);
+        y = y / norm%new
     x= y;
-end
+    
+    y = floor(y*1000);
+    
+end 
 
-%----------------3
 
 

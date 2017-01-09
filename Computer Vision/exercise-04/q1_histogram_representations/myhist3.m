@@ -9,25 +9,24 @@ function h = myhist3(filename, bins)
     r = Red./(Red+Green+Blue);
     g = Green./(Red+Green+Blue);
     h =zeros(bins, bins);
-    %r = reshape(r,1,row*col);
-    %r = hist(r,bins);
-    %g = reshape(g,1,row*col);
-    %g = hist(g,bins);
+
     
-ratio = bins/max(max(max(r)),max(max(g)));
+   R = round(r*(bins-1))+1;
+   G = round(g*(bins-1))+1;
 for i=1:row
     for j = 1:col
-        x=ceil(r(i,j)*ratio);
-        y=ceil(g(i,j)*ratio);
-        if x==0 
-            x=1;
-        end
-        if y==0 
-            y=1;
-        end
+        x=R(i,j);
+        y=G(i,j);
         h(x,y)=h(x,y)+1;
     end
 end
-    h = reshape(h,1,bins^2);
+    h(1,1) = 0; %black
+	h(round((bins-1)/3)+1,round((bins-1)/3)+1) = 0; %gray (1,1,1)
+
+	%normalize the histogram such that its integral (sum) is equal 1
+	h = h./sum(sum(h));
+
+	%reshape the histogram to obtain a 1D row vector of size 1 x bins^2
+	h=reshape(h,1,bins^2); 
 
 end
